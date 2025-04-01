@@ -1,8 +1,19 @@
+<h1>Album List</h1>
+
+<form method="get" action="">
+    <input type="text" name="q" placeholder="Search by title..." value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+
+
+
 <ul>
-    {% for album in albums %}
-        <li>
-            <a href="{% url '../album_detail' album.id %}">{{ album.title }}</a>
-            (Artiste: {{ album.artist.name }}) 
-        </li>
-    {% endfor %}
+{% for album in albums %}
+    <li>
+        <a href="{% url 'album_detail' album.id %}">{{ album.title }}</a>
+        (Artist: {{ album.artist.name }})
+    </li>
+{% empty %}
+    <li>No albums found.</li>
+{% endfor %}
 </ul>
