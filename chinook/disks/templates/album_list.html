@@ -1,5 +1,8 @@
 <ul>
     {% for album in albums %}
-        <li>{{ album.title }}</li>
+        <li>
+            <a href="{% url '../album_detail' album.id %}">{{ album.title }}</a>
+            (Artiste: {{ album.artist.name }}) 
+        </li>
     {% endfor %}
 </ul>
