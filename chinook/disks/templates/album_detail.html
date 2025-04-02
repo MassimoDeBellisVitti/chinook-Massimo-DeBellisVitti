@@ -1,31 +1,43 @@
-<h2>Album: {{ album.title }}</h2>
-<p>Artist: {{ album.artist.name }}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Album Detail</title>
+    <!-- ✅ Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-4">
+        <h1 class="mb-3">{{ album.title }}</h1>
+        <p class="lead">Artist: <strong>{{ album.artist.name }}</strong></p>
 
-<h3>Track List</h3>
+        <h3 class="mt-4 mb-3">Track List</h3>
 
-<table border="1" cellspacing="0" cellpadding="6">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Composer</th>
-            <th>Duration (ms)</th>
-            <th>Unit Price (€)</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for track in tracks %}
-        <tr>
-            <td>{{ track.name }}</td>
-            <td>{{ track.composer }}</td>
-            <td>{{ track.milliseconds }}</td>
-            <td>{{ track.unitPrice }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="4">No tracks found for this album.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Composer</th>
+                    <th>Duration (ms)</th>
+                    <th>Unit Price (€)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for track in tracks %}
+                <tr>
+                    <td>{{ track.name }}</td>
+                    <td>{{ track.composer }}</td>
+                    <td>{{ track.milliseconds }}</td>
+                    <td>{{ track.unitPrice }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-<p><a href="{% url 'album_list' %}">← Back to album list</a></p>
+        <a href="{% url 'album_list' %}" class="btn btn-secondary mt-3">← Back to Album List</a>
+    </div>
+
+    <!-- Bootstrap JS (facoltativo) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

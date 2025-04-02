@@ -1,19 +1,35 @@
-<h1>Album List</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Album List</title>
+    <!-- ✅ Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-4">
+        <h1 class="mb-4">Album List</h1>
 
-<form method="get" action="">
-    <input type="text" name="q" placeholder="Search by title..." value="{{ query }}">
-    <button type="submit">Search</button>
-</form>
+        <form method="get" action="" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search by title or artist..." value="{{ query }}">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </form>
 
+        <ul class="list-group">
+            {% for album in albums %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{% url 'album_detail' album.id %}">{{ album.title }}</a>
+                    <span class="text-muted">by {{ album.artist.name }}</span>
+                </li>
+            {% empty %}
+                <li class="list-group-item text-danger">No albums found.</li>
+            {% endfor %}
+        </ul>
+    </div>
 
-
-<ul>
-{% for album in albums %}
-    <li>
-        <a href="{% url 'album_detail' album.id %}">{{ album.title }}</a>
-        (Artist: {{ album.artist.name }})
-    </li>
-{% empty %}
-    <li>No albums found.</li>
-{% endfor %}
-</ul>
+    <!-- Bootstrap JS (facoltativo) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
